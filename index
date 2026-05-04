@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APS × Gravity — 오픈이노베이션 펀드 제안</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  --bg:        #F4F6FA;
+  --bg2:       #EAEDF4;
+  --bg3:       #E2E6F0;
+  --card:      #FFFFFF;
+  --border:    rgba(10,30,80,0.09);
+  --border-h:  rgba(10,30,80,0.18);
+  --text:      #141E30;
+  --muted:     #6B7A99;
+  --faint:     #E6EAF4;
+  --g-green:   #00A876;   /* Gravity 시그니처 */
+  --g-green2:  #007A54;
+  --g-glow:    rgba(0,168,118,0.12);
+  --g-glow2:   rgba(0,168,118,0.05);
+  --a-blue:    #1A5FD4;   /* APS 시그니처 */
+  --a-blue2:   #0F44A8;
+  --a-glow:    rgba(26,95,212,0.10);
+  --accent:    #00A876;
+  --success:   #00A876;
+  --warn:      #D97706;
+  --danger:    #DC2626;
+  --font-head: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-body: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-mono: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --max: 1160px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* ── NAV ───────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 900;
+  background: rgba(244,246,250,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  padding: 0 32px;
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 14px 0;
+  margin-right: 32px;
+  white-space: nowrap;
+}
+.nav-logo span.g { color: var(--g-green); }
+.nav-logo span.x { color: var(--muted); margin: 0 6px; }
+.nav-logo span.a { color: var(--a-blue); }
+.nav-links {
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 5px;
+  padding: 14px 16px;
+  font-size: 12px; font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav-link .num {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--g-green);
+  opacity: 0.6;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--a-blue);
+  border-bottom-color: var(--g-green);
+}
+/* ── HERO ──────────────────────────── */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 64px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(0,168,118,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 20% 70%, rgba(26,95,212,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(0,168,118,0.04) 0%, transparent 50%);
+}
+/* Grid lines */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(10,30,80,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,30,80,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-inner { max-width: var(--max); margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--g-green);
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--g-green);
+  animation: blink 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #141E30;
+  margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--g-green); }
+.hero-title .accent2 { color: var(--a-blue); }
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: #6B7A99;
+  margin-bottom: 48px;
+  max-width: 620px;
+  line-height: 1.6;
+}
+/* ── SCROLL INDICATOR ── */
+.scroll-hint {
+  position: absolute; bottom: 24px; right: 32px; z-index: 1;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: 0.08em;
+}
+.scroll-hint::before {
+  content: '';
+  display: block; width: 1px; height: 32px;
+  background: linear-gradient(to bottom, transparent, var(--a-blue));
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+/* ── SECTIONS ──────────────────────── */
+.section {
+  padding: 80px 32px;
+  max-width: var(--max); margin: 0 auto;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section.vis { opacity: 1; transform: translateY(0); }
+.section-full { max-width: none; padding: 80px 0; }
+.section-full .section-inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.sec-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--g-green); margin-bottom: 12px;
+}
+.sec-tag::before {
+  content: ''; display: block;
+  width: 24px; height: 1.5px;
+  background: var(--g-green); border-radius: 99px;
+}
+.sec-title {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800; letter-spacing: -0.025em;
+  color: var(--text); margin-bottom: 12px; line-height: 1.1;
+}
+.sec-desc {
+  font-size: 15px; color: var(--muted);
+  max-width: 540px; line-height: 1.75;
+}
+/* ── DIVIDER ───────────────────────── */
+.divider {
+  height: 1px; max-width: var(--max); margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(10,30,80,0.1), transparent);
+}
+/* ── CARDS ─────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(10,30,80,0.05);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { border-color: var(--border-h); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(10,30,80,0.09); }
+/* ── GRID HELPERS ──────────────────── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.g-12 { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+/* ── CARD TITLE ────────────────────── */
+.card-title {
+  font-family: var(--font-head);
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.card-title::before {
+  content: ''; display: block;
+  width: 3px; height: 16px;
+  background: var(--g-green); border-radius: 99px;
+}
+/* ── EXEC SUMMARY — STAT BLOCKS ────── */
+.stat-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(10,30,80,0.05);
+  position: relative; overflow: hidden;
+}
+.stat-block::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--g-green), var(--a-blue));
+}
+.stat-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.stat-val {
+  font-family: var(--font-head);
+  font-size: 36px; font-weight: 800;
+  color: var(--text); letter-spacing: -0.03em; line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-val .unit { font-size: 16px; font-weight: 600; color: var(--muted); }
+.stat-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.stat-accent { font-size: 13px; font-weight: 700; color: var(--g-green); margin-top: 10px; }
+/* ── PROBLEM SECTION ───────────────── */
+.problem-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+.problem-col {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 36px 32px;
+}
+.problem-col:first-child { border-radius: var(--r-lg) 0 0 var(--r-lg); }
+.problem-col:last-child { border-radius: 0 var(--r-lg) var(--r-lg) 0; background: rgba(0,168,118,0.04); border-color: rgba(0,168,118,0.2); }
+.prob-head {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 20px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.prob-head.bad { color: var(--danger); border-color: rgba(220,38,38,0.2); }
+.prob-head.good { color: var(--g-green); border-color: rgba(0,168,118,0.2); }
+.metric-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-key { color: var(--muted); }
+.metric-val { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+.metric-val.bad { color: var(--danger); }
+.metric-val.good { color: var(--g-green); }
+/* ── FUND STRUCTURE ────────────────── */
+.fund-hero {
+  background: linear-gradient(135deg, rgba(0,168,118,0.07), rgba(26,95,212,0.05));
+  border: 1px solid rgba(0,168,118,0.2);
+  border-radius: var(--r-xl);
+  padding: 40px 36px;
+  margin-bottom: 20px;
+  position: relative; overflow: hidden;
+}
+.fund-hero::after {
+  content: ''; position: absolute;
+  right: -40px; top: -40px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,168,118,0.08), transparent 70%);
+}
+.fund-amount {
+  font-family: var(--font-head);
+  font-size: 72px; font-weight: 800;
+  color: var(--g-green); letter-spacing: -0.04em;
+  line-height: 1;
+}
+.fund-amount span { font-size: 28px; color: var(--muted); font-weight: 600; }
+.fund-sub { font-size: 16px; color: var(--muted); margin-top: 6px; }
+/* ── OPTION CARDS ──────────────────── */
+/* ── THEMES ────────────────────────── */
+.theme-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(10,30,80,0.05);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.theme-card:hover { border-color: var(--border-h); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(10,30,80,0.09); }
+.theme-card.priority { border-color: rgba(0,168,118,0.25); }
+.theme-top {
+  padding: 24px 22px 18px;
+}
+.theme-num {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;
+}
+.theme-title {
+  font-family: var(--font-head); font-size: 18px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px; line-height: 1.25;
+}
+.theme-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.priority-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; background: var(--g-green);
+  padding: 3px 8px; border-radius: 99px; margin-bottom: 8px;
+}
+/* ── TIMELINE ──────────────────────── */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--g-green), var(--a-blue), transparent);
+}
+.tl-item { position: relative; margin-bottom: 32px; }
+.tl-item::before {
+  content: ''; position: absolute;
+  left: -38px; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--g-green);
+}
+.tl-month {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  color: var(--g-green); margin-bottom: 6px;
+}
+.tl-title {
+  font-family: var(--font-head); font-size: 16px; font-weight: 700;
+  color: var(--text); margin-bottom: 4px;
+}
+.tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+/* ── ROI TABLE ──────────────────────── */
+.roi-table { width: 100%; border-collapse: collapse; }
+.roi-table thead tr {
+  background: rgba(0,168,118,0.07);
+  border-bottom: 1px solid rgba(0,168,118,0.15);
+}
+.roi-table th {
+  padding: 12px 18px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--g-green); text-align: left;
+}
+.roi-table td {
+  padding: 14px 18px;
+  font-size: 14px; color: var(--text);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.roi-table td.val {
+  font-family: var(--font-mono); font-weight: 600;
+  color: var(--g-green);
+}
+.roi-table tbody tr:last-child td { border-bottom: none; }
+.roi-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+/* ── PARTNER SECTION ───────────────── */
+/* ── FOOTER ─────────────────────────── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 48px 32px;
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {
+  font-family: var(--font-head); font-size: 18px; font-weight: 800;
+  color: var(--text); margin-bottom: 10px;
+}
+.footer-brand span.g { color: var(--g-green); }
+.footer-brand span.x { color: var(--muted); margin: 0 6px; }
+.footer-brand span.a { color: var(--a-blue); }
+.footer-text { font-size: 12px; color: var(--muted); line-height: 1.75; }
+.footer-heading { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g-green); margin-bottom: 12px; }
+.footer-list { list-style: none; }
+.footer-list li { font-size: 13px; color: var(--muted); padding: 4px 0; }
+.footer-bottom {
+  max-width: var(--max); margin: 32px auto 0;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  letter-spacing: 0.05em;
+}
+/* ── BADGE ─────────────────────────── */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  padding: 3px 9px; border-radius: 99px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.badge-g   { background: rgba(0,168,118,0.10); color: var(--g-green); border: 1px solid rgba(0,168,118,0.25); }
+.badge-b   { background: rgba(26,95,212,0.08); color: var(--a-blue); border: 1px solid rgba(26,95,212,0.2); }
+.badge-w   { background: rgba(217,119,6,0.08); color: var(--warn); border: 1px solid rgba(217,119,6,0.2); }
+.badge-r   { background: rgba(220,38,38,0.08); color: var(--danger); border: 1px solid rgba(220,38,38,0.2); }
+.badge-gray { background: rgba(10,30,80,0.05); color: var(--muted); border: 1px solid var(--border); }
+/* ── HIGHLIGHT BOX ─────────────────── */
+.hl-box {
+  background: rgba(0,229,160,0.06);
+  border-left: 3px solid var(--g-green);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.hl-box p { font-size: 14px; color: var(--text); line-height: 1.7; }
+.hl-box strong { color: var(--g-green); font-weight: 700; }
+/* ── INFO LIST ─────────────────────── */
+.info-list { list-style: none; }
+.info-list li {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px; gap: 12px;
+}
+.info-list li:last-child { border-bottom: none; }
+.info-key { color: var(--muted); min-width: 100px; }
+.info-val { color: var(--text); font-weight: 600; text-align: right; }
+.info-val.accent { color: var(--g-green); }
+/* ── POLICY CARD ───────────────────── */
+/* ── SECTION SEPARATOR ─────────────── */
+.section-sep {
+  height: 1px; background: var(--border);
+  max-width: var(--max); margin: 0 auto;
+}
+/* ── PROGRAM FLOW ──────────────────── */
+.flow-steps {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  position: relative; gap: 2px;
+}
+.flow-step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 22px;
+  position: relative;
+}
+.flow-step.active {
+  border-color: rgba(0,168,118,0.25);
+  background: rgba(0,168,118,0.04);
+}
+.flow-step-num {
+  font-family: var(--font-head); font-size: 56px; font-weight: 800;
+  color: rgba(10,30,80,0.06); line-height: 1;
+  position: absolute; top: 16px; right: 16px;
+  letter-spacing: -0.04em;
+}
+.flow-step-tag {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--g-green); margin-bottom: 10px;
+}
+.flow-step-title {
+  font-family: var(--font-head); font-size: 17px; font-weight: 700;
+  color: var(--text); margin-bottom: 8px;
+}
+.flow-step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+/* ── RESPONSIVE ────────────────────── */
+@media (max-width: 800px) {
+  .g2, .g3, .g4, .g-12, .problem-row, .flow-steps { grid-template-columns: 1fr; }
+  .hero { min-height: 80vh; }
+  .hero-title { font-size: 38px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .nav-logo { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="g">GRAVITY</span>
+      <span class="x">×</span>
+      <span class="a">APS</span>
+    </div>
+    <div class="nav-links">
+      <a href="#exec" class="nav-link active"><span class="num">01</span> Executive Summary</a>
+      <a href="#problem" class="nav-link"><span class="num">02</span> 현황 진단</a>
+      <a href="#proposal" class="nav-link"><span class="num">03</span> 핵심 제안</a>
+      <a href="#themes" class="nav-link"><span class="num">04</span> 협업 테마</a>
+      <a href="#market" class="nav-link"><span class="num">05</span> OI 시장 동향</a>
+      <a href="#roi" class="nav-link"><span class="num">06</span> 기대 효과 · ROI</a>
+      <a href="#timeline" class="nav-link"><span class="num">07</span> 추진 일정</a>
+    </div>
+  </div>
+</nav>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Investment Proposal · April 2026</div>
+    <h1 class="hero-title">
+      APS 그룹 기업가치 제고를 위한<br>
+      <span class="accent">오픈이노베이션 펀드</span><br>
+      <span class="accent2">조성 제안</span>
+    </h1>
+    <p class="hero-sub">
+      그래비티벤처스가 APS 그룹의 핵심 기술과 딥테크 스타트업을 연결합니다.<br>
+      30억 원 블라인드 펀드 + OI 프로그램으로 혁신 성장 프리미엄을 실현합니다.
+    </p>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+<!-- ── SECTION 1: EXEC SUMMARY ─────── -->
+<section id="exec" class="section">
+  <div class="sec-tag">01 Executive Summary</div>
+  <h2 class="sec-title">핵심 요약</h2>
+  <p class="sec-desc">APS 그룹의 기술 경쟁력과 스타트업 딥테크를 결합해 신규 매출 창출 및 혁신 성장 프리미엄 확보를 동시에 달성합니다.</p>
+  <div style="height:36px"></div>
+  <div class="g-12">
+    <div class="card">
+      <div class="card-title">그룹 강점</div>
+      <ul class="info-list">
+        <li><span class="info-key">핵심 기술</span><span class="info-val">레이저·광학·열처리·제어·검사</span></li>
+        <li><span class="info-key">주요 계열사</span><span class="info-val">AP시스템즈, 코닉, 넥스틴 등</span></li>
+        <li><span class="info-key">글로벌 고객</span><span class="info-val">삼성디스플레이, BOE, LG에너지</span></li>
+        <li><span class="info-key">주주환원</span><span class="info-val accent">당기순이익 30% 환원</span></li>
+        <li><span class="info-key">미래 전략</span><span class="info-val">Triple 3 (매출 3조·이익 3천억·시총 3조)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">제안 솔루션</div>
+      <div class="hl-box">
+        <p><strong>APS Gravity OI 블라인드 펀드 30억 원</strong>을 조성하여 반도체 딥테크 스타트업 5~10개사에 투자합니다. 어드밴스드 패키징·HBM·유리기판·실리콘포토닉스 등 핵심 분야 집중.</p>
+      </div>
+      <div class="hl-box" style="border-color:var(--a-blue);background:rgba(26,95,212,0.05)">
+        <p><strong style="color:var(--a-blue)">APS Gravity OI 프로그램 (연 2회)</strong>을 통해 스타트업을 선발하고, 협업 가능 기업에 APS 실증 환경을 무상 제공합니다.</p>
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">핵심 효과</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-green);font-weight:700;flex-shrink:0">→</span>다양한 반도체 기술기업 발굴 및 투자</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-green);font-weight:700;flex-shrink:0">→</span>AP시스템 기술브랜딩 강화</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-green);font-weight:700;flex-shrink:0">→</span>기업가치 제고</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 2: 현황 진단 ─────────── -->
+<section id="problem" class="section">
+  <div class="sec-tag">02 APS 그룹 현황 진단 및 당면 과제</div>
+  <h2 class="sec-title">현황 진단 및 당면 과제</h2>
+  <p class="sec-desc">실적은 안정적이나 미래 성장 스토리가 부족해 기업가치에 혁신 프리미엄이 반영되지 못하고 있습니다.</p>
+  <div style="height:36px"></div>
+  <!-- 2.1 그룹 강점 -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title">2.1 그룹의 강점 및 인프라</div>
+    <div class="g2">
+      <ul class="info-list">
+        <li><span class="info-key">수직 통합</span><span class="info-val">OLED 82% · 반도체 15.6% · 2차전지 1.5% (AP시스템즈 기준)</span></li>
+        <li><span class="info-key">Total Solution</span><span class="info-val">장비-부품(제니스월드)-S/W(코닉)-검사(넥스틴·디이엔티) 21개 계열사</span></li>
+        <li><span class="info-key">안정적 실적</span><span class="info-val accent">2025년 연결 매출 4,600억 원 · 당기순이익 30% 주주환원</span></li>
+      </ul>
+      <ul class="info-list">
+        <li><span class="info-key">기술 시너지</span><span class="info-val">레이저·광학·제어 기술 내재화 → 삼성디스플레이·BOE·LG에너지솔루션 공급</span></li>
+        <li><span class="info-key">미래사업</span><span class="info-val">AI·로봇·의료·신소재(비트 2대주주)·방산(SR 편입) 다각화</span></li>
+        <li><span class="info-key">성장 목표</span><span class="info-val accent">Triple 3 — 2030년 매출 3조 · 영업이익 3천억 · 시총 3조</span></li>
+      </ul>
+    </div>
+  </div>
+  <!-- 2.2 당면 과제 -->
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">2.2 당면 과제 — 혁신 성장 프리미엄 미반영</div>
+  <div class="problem-row" style="margin-bottom:20px">
+    <div class="problem-col">
+      <div class="prob-head bad">⚠ 현재 상황</div>
+      <div class="metric-row">
+        <span class="metric-key">PER</span>
+        <span class="metric-val bad">14.3배</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">PBR</span>
+        <span class="metric-val bad">0.9배</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">시가총액</span>
+        <span class="metric-val bad">약 3,364억 원</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">장비업종 평균 PER</span>
+        <span class="metric-val">10~20배</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Triple 3 시총 목표</span>
+        <span class="metric-val" style="color:var(--a-blue)">3조 원 (현재 대비 ×9)</span>
+      </div>
+      <div style="margin-top:20px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">주요 원인</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="badge badge-r" style="width:fit-content">단기 실적 중심 시장 인식</div>
+          <div class="badge badge-r" style="width:fit-content">CVC·OI 활동 미흡</div>
+          <div class="badge badge-r" style="width:fit-content">혁신 성장 프리미엄 미반영</div>
+        </div>
+      </div>
+    </div>
+    <div class="problem-col">
+      <div class="prob-head good">✦ 해결 방향 (목표)</div>
+      <div class="metric-row">
+        <span class="metric-key">OI 프리미엄 효과</span>
+        <span class="metric-val good">혁신기업 멀티플 확보</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">시총 목표</span>
+        <span class="metric-val good">Triple 3 — 3조 원</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">추가 매출</span>
+        <span class="metric-val good">200~500억 원</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">펀드 IRR</span>
+        <span class="metric-val good">20% 이상</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">협업 사례</span>
+        <span class="metric-val good">10건 이상 (3년)</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">달성 기간</span>
+        <span class="metric-val good">3년 이내</span>
+      </div>
+    </div>
+  </div>
+  <div class="hl-box" style="margin-top:20px">
+    <p><strong>해결 방향</strong>: 대기업 선진 사례(삼성 C-Lab Outside, 에코프로 OI)처럼 <strong>스타트업과의 전략적 협업·투자</strong>를 통해 '혁신 성장 플랫폼 기업'으로 재포지셔닝해야 합니다.</p>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 3: 핵심 제안 ─────────── -->
+<section id="proposal" class="section">
+  <div class="sec-tag">03 핵심 제안</div>
+  <h2 class="sec-title">APS Gravity 오픈이노베이션 펀드 및 프로그램</h2>
+  <p class="sec-desc">30억 원 규모 블라인드 펀드 조성과 연 2회 오픈이노베이션 프로그램을 통해 딥테크 스타트업과 전략적 협업을 구축합니다.</p>
+  <div style="height:36px"></div>
+  <!-- Fund Hero -->
+  <div class="fund-hero" style="margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;position:relative;z-index:1">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--g-green);margin-bottom:12px">APS Gravity Open Innovation Blind Fund</div>
+        <div class="fund-amount">30억<span>원</span></div>
+        <div class="fund-sub">블라인드 펀드 · 5년 만기 · 3년 투자기간 · 5~10개사 투자 (1사당 3~6억 원)<br>기업별 투자기간: 3~5년 · Exit: IPO·M&amp;A</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:200px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">핵심 투자 분야</div>
+        <span class="badge badge-g">어드밴스드 패키징</span>
+        <span class="badge badge-b">HBM · 유리기판</span>
+        <span class="badge badge-g">실리콘포토닉스</span>
+        <span class="badge badge-b">PLP · 하이브리드 본딩</span>
+        <span class="badge badge-g">레이저 어닐링 · 디본딩</span>
+      </div>
+    </div>
+  </div>
+  <!-- Fund Core Structure -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title">펀드 핵심 구조 및 운영 원칙</div>
+    <ul class="info-list">
+      <li><span class="info-key">결성 규모</span><span class="info-val accent">30억 원 (블라인드 펀드)</span></li>
+      <li><span class="info-key">투자 의사결정</span><span class="info-val">그래비티벤처스 딜소싱 · 투자심사 + AP시스템 거부권 보유</span></li>
+      <li><span class="info-key">기업별 투자기간</span><span class="info-val">3~5년 — AP시스템 투자 타임라인에 맞춰 중후기 / 초기기업 비중 조절</span></li>
+      <li><span class="info-key">LP 인센티브</span><span class="info-val accent">(희망 시) 조합 보유 스타트업 지분에 대한 우선매수권 행사 가능</span></li>
+      <li><span class="info-key">Exit 전략</span><span class="info-val">3~5년 내 IPO · M&amp;A · 우선매수권 활용</span></li>
+    </ul>
+  </div>
+  <!-- OI Program Flow -->
+  <div style="margin-bottom:12px">
+    <div class="sec-tag" style="margin-bottom:8px">APS Gravity Open Innovation Program</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">연 2회 운영 · <strong style="color:var(--text)">1기 운영 기간: 2026년 5월~10월</strong> · 8~12개사 선발 목표</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <div class="flow-step-tag">Phase 01 · 모집</div>
+        <div class="flow-step-title">스타트업 공모 · 선발</div>
+        <div class="flow-step-desc">6대 협업 테마 기준으로 딥테크 스타트업을 공모하여 APS와의 협업 가능성을 검토합니다.</div>
+      </div>
+      <div class="flow-step active">
+        <div class="flow-step-num">2</div>
+        <div class="flow-step-tag">Phase 02 · 실사 및 설계</div>
+        <div class="flow-step-title">투자 실사 및 PoC 설계</div>
+        <div class="flow-step-desc">모집된 기업에 대한 투자 실사를 진행하고, 필요시 AP시스템즈와의 PoC 구조를 설계합니다.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <div class="flow-step-tag">Phase 03 · 투자 및 성장</div>
+        <div class="flow-step-title">투자 집행 &amp; Scaling</div>
+        <div class="flow-step-desc">투자 집행 후 PoC 성과 발표 등 후속 성장을 지원합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 4: 협업 테마 ─────────── -->
+<section id="themes" class="section">
+  <div class="sec-tag">04 협업 테마</div>
+  <h2 class="sec-title">미래 성장을 위한 6대 핵심 협업 테마</h2>
+  <p class="sec-desc">APS 기존 강점(기술 시너지 70% 이상)과 2026~2030 시장 성장성을 반영하여 도출한 6대 테마입니다.</p>
+  <div style="height:36px"></div>
+  <div class="g2" style="margin-bottom:16px">
+    <!-- Theme 1: 첨단 반도체 패키징 (구 04) -->
+    <div class="theme-card priority">
+      <div class="theme-top">
+        <div class="priority-badge">★ 1기 우선</div>
+        <div class="theme-num">THEME 01</div>
+        <div class="theme-title">첨단 반도체 패키징·후공정 솔루션</div>
+        <div class="theme-desc">HBM·Glass Substrate·SiC 후공정을 위한 차세대 패키징 솔루션을 개발합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: HBM · Glass Substrate · SiC 후공정</div>
+      </div>
+    </div>
+    <!-- Theme 2: AI 스마트 제조 (구 01) -->
+    <div class="theme-card priority">
+      <div class="theme-top">
+        <div class="priority-badge">★ 1기 우선</div>
+        <div class="theme-num">THEME 02</div>
+        <div class="theme-title">AI 기반 스마트 제조 및 공정 지능화</div>
+        <div class="theme-desc">수율 최적화, 디지털 트윈, Edge AI 제어를 통해 제조 공정을 혁신합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: 수율 최적화 · 디지털 트윈 · Edge AI 제어</div>
+      </div>
+    </div>
+    <!-- Theme 3: 차세대 2차전지 (구 03) -->
+    <div class="theme-card priority">
+      <div class="theme-top">
+        <div class="priority-badge">★ 1기 우선</div>
+        <div class="theme-num">THEME 03</div>
+        <div class="theme-title">차세대 2차전지 제조·검사 혁신</div>
+        <div class="theme-desc">레이저 노칭·AI 검사, 재활용 기술로 배터리 제조 전 공정을 혁신합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: 레이저 노칭·AI 검사 · 재활용 기술</div>
+      </div>
+    </div>
+    <!-- Theme 4: 첨단 레이저·광학 (구 02) -->
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 04</div>
+        <div class="theme-title">첨단 레이저·광학 응용 기술</div>
+        <div class="theme-desc">펨토초 레이저 패터닝·디본딩, TGV 드릴링 등 차세대 레이저 응용 기술을 확장합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: 펨토초 레이저 패터닝·디본딩 · TGV 드릴링</div>
+      </div>
+    </div>
+    <!-- Theme 5: 피지컬 AI (구 05) -->
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 05</div>
+        <div class="theme-title">피지컬 AI·로봇 기반 공장 자동화</div>
+        <div class="theme-desc">VLA 협동로봇, 클린룸 AMR을 통해 스마트 팩토리를 완성합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: VLA 협동로봇 · 클린룸 AMR</div>
+      </div>
+    </div>
+    <!-- Theme 6: 신소재 (구 06) -->
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 06</div>
+        <div class="theme-title">신소재·방산·의료 응용 기술</div>
+        <div class="theme-desc">비트(신소재) 2대주주, SR(방산) 계열 편입을 기반으로 AI 의료기기·방산 소재·기능성 신소재 분야로 사업 영역을 확장합니다.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">서브테마: AI 의료기기 · 방산 소재 · 기능성 신소재</div>
+      </div>
+    </div>
+  </div>
+  <div class="hl-box">
+    <p><strong>1기 우선 테마 선정 기준</strong>: 테마 1~3은 APS 현행 장비와의 기술 시너지가 크고 매출 연계 가능성이 높습니다. 정부의 AI 전환 방향성과도 부합하여 추후 정부 오픈이노베이션을 통한 자금 지원도 가능합니다.</p>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 5: 시장 동향 ─────────── -->
+<section id="market" class="section">
+  <div class="sec-tag">05 시장 및 정책 동향</div>
+  <h2 class="sec-title">성공을 담보하는 2026 국내외 OI 시장 및 정책 동향</h2>
+  <p class="sec-desc">글로벌 OI 트렌드와 국내 정책 모두 APS가 지금 움직여야 할 이유를 뒷받침합니다.</p>
+  <div style="height:36px"></div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title" style="color:var(--a-blue)">글로벌 트렌드</div>
+      <ul class="info-list">
+        <li><span class="info-key">Scaling-First</span><span class="info-val">PoC → 실제 채택(50%↑) 중심 전환 (Mind the Bridge 2026)</span></li>
+        <li><span class="info-key">AI-Driven OI</span><span class="info-val">Physical AI·Edge AI가 OI 핵심 동력 부상 (Gartner)</span></li>
+        <li><span class="info-key">ESG 협업</span><span class="info-val">반도체·배터리 탄소중립 솔루션 수요 폭증</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--g-green)">국내 정책 동향 (중기부)</div>
+      <ul class="info-list">
+        <li><span class="info-key">민관협력 OI</span><span class="info-val accent">PoC 지원금 최대 1.4억 원/사 · AI 과제 비중 60%</span></li>
+        <li><span class="info-key">TIPS 상향</span><span class="info-val">13년 만에 최대 8억 원으로 대폭 증가</span></li>
+        <li><span class="info-key">선별추천형</span><span class="info-val accent">정부 매칭 자금 2~3배 레버리지 활용 가능</span></li>
+      </ul>
+    </div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(0,168,118,0.07),rgba(26,95,212,0.05));border:1px solid rgba(0,168,118,0.18);border-radius:var(--r-lg);padding:28px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <div style="font-size:40px">💡</div>
+    <div>
+      <div style="font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">APS의 정책 기회</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.7">1기 테마(AI·2차전지·반도체)가 정부 전략과제와 <strong style="color:var(--g-green)">90% 이상 일치</strong>합니다.<br>APS가 수요기업으로 참여 시 <strong style="color:var(--g-green)">PoC 비용의 50% 이상을 정부가 지원</strong>합니다.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 6: ROI ─────────────────── -->
+<section id="roi" class="section">
+  <div class="sec-tag">06 기대 효과 및 ROI</div>
+  <h2 class="sec-title">기대 효과 및 투자 회수(ROI) 전략</h2>
+  <p class="sec-desc">3년 내 달성 가능한 구체적 목표와 정량적 지표를 제시합니다.</p>
+  <div style="height:24px"></div>
+  <div class="hl-box" style="border-left-width:4px">
+    <p><strong>핵심 기대효과</strong> &nbsp;·&nbsp; 블라인드 펀드 기반 오픈이노베이션 프로그램 수행 → 다양한 반도체 기술기업 발굴 · 투자로 <strong>AP시스템 기술브랜딩 강화 및 기업가치 제고</strong></p>
+  </div>
+  <div style="height:24px"></div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px">
+    <table class="roi-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>구체적 효과</th>
+          <th>정량적 목표 (3년 내)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-g">사업적</span></td>
+          <td>신규 장비·AI 업그레이드 솔루션 개발 및 상용화<br><span style="font-size:12px;color:var(--muted)">첨단 반도체 기업 포지셔닝으로 기업가치 재평가 기반 마련</span></td>
+          <td class="val">추가 매출 200~500억 원</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-b">재무적</span></td>
+          <td>IR 스토리 강화 및 미래 성장 프리미엄 확보<br><span style="font-size:12px;color:var(--muted)">오픈이노베이션 활동으로 기관 투자자 신뢰도 상승</span></td>
+          <td class="val">혁신기업 밸류에이션 확보<br>IRR 20%+</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-gray">문화·인재</span></td>
+          <td>내부 혁신 문화 조성 및 우수 인재 유입<br><span style="font-size:12px;color:var(--muted)">스타트업 협업 경험 내재화</span></td>
+          <td class="val">협업 사례 10건 이상</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-w">사회적</span></td>
+          <td>비수도권 딥테크 생태계 활성화<br><span style="font-size:12px;color:var(--muted)">그래비티 네트워크 활용</span></td>
+          <td class="val">딥테크 생태계 기여</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g3">
+    <div class="stat-block">
+      <div class="stat-label">기술혁신 가속화</div>
+      <div class="stat-val" style="color:var(--g-green);font-size:28px">AI · 딥테크</div>
+      <div class="stat-sub">신기술 분야<br>기술혁신 가속화</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">시가총액 목표</div>
+      <div class="stat-val" style="font-size:28px;color:var(--g-green)">3조<span class="unit">원</span></div>
+      <div class="stat-sub">현재 3,364억 원 대비<br>Triple 3 목표</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">OI 펀드 수익률</div>
+      <div class="stat-val" style="color:var(--g-green)">20%<span class="unit">+</span></div>
+      <div class="stat-sub">IRR 목표<br>Exit: IPO·M&amp;A</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- ── SECTION 7: TIMELINE ─────────── -->
+<section id="timeline" class="section">
+  <div class="sec-tag">07 파트너 역량 및 추진 일정</div>
+  <h2 class="sec-title">추진 일정 (안)</h2>
+  <p class="sec-desc">MOU 체결부터 2기 투자 집행까지 12개월 액션 플랜입니다.</p>
+  <div style="height:36px"></div>
+  <div class="g2">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-month">1개월 차</div>
+        <div class="tl-title">MOU 체결 + 펀드 결성 준비</div>
+        <div class="tl-desc">그래비티벤처스-APS 그룹 간 업무협약 체결. 펀드 구조 확정 및 LP 모집 준비 착수.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">2개월 차</div>
+        <div class="tl-title">펀드 조성 완료 + 1기 공모 시작</div>
+        <div class="tl-desc">30억 원 블라인드 펀드 결성 완료. APS Gravity 1기 프로그램 공모 시작 (8~12개사 모집 목표).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">3개월 차</div>
+        <div class="tl-title">1기 모집 종료 · 투자실사 및 PoC 설계 착수</div>
+        <div class="tl-desc">공모 마감 후 선발 기업에 대한 투자 실사를 진행하고, AP시스템즈와의 PoC 구조를 설계합니다.</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-month">5개월 차</div>
+        <div class="tl-title">1기 투자 집행 · 액셀러레이팅 돌입</div>
+        <div class="tl-desc">실사 완료 기업 대상 투자를 집행하고, APS 실증 환경을 활용한 본격 액셀러레이팅을 시작합니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">7개월 차</div>
+        <div class="tl-title">2기 스타트업 공모 시작</div>
+        <div class="tl-desc">1기 진행 중 2기 공모를 병행 런칭하여 파이프라인을 지속 확보합니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">12개월 차</div>
+        <div class="tl-title">1기 성과 발표 + 2기 투자 집행</div>
+        <div class="tl-desc">1기 PoC 성과를 발표하고, 2기 투자 집행으로 이어갑니다.</div>
+      </div>
+      <div class="card" style="background:rgba(0,168,118,0.04);border-color:rgba(0,168,118,0.18);margin-top:8px">
+        <div class="card-title">다음 단계</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.75">
+          본 제안에 관심이 있으시면 아래 단계를 권장합니다.<br>
+          <strong style="color:var(--g-green)">① 실무 미팅</strong>을 통해 구체 조건 협의<br>
+          <strong style="color:var(--g-green)">② MOU 초안</strong> 검토 및 법무 협의<br>
+          <strong style="color:var(--g-green)">③ 펀드 결성</strong> 절차 착수
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="g">GRAVITY</span><span class="x">×</span><span class="a">APS</span>
+      </div>
+      <div class="footer-text" style="max-width:320px">
+        본 제안서는 주식회사 그래비티벤처스가 APS 그룹을 대상으로 작성한 기업가치 제고를 위한 오픈이노베이션 펀드 및 프로그램 조성 제안서입니다. 본 문서에 포함된 수치 및 예측은 현 시점 정보에 기반하며 실제 결과와 다를 수 있습니다.
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">제안 개요</div>
+      <ul class="footer-list">
+        <li>제안 주체: 주식회사 그래비티벤처스</li>
+        <li>제안 대상: APS 그룹 전 계열사</li>
+        <li>제안 시기: 2026년 4월</li>
+        <li>펀드 규모: 30억 원 (블라인드 펀드)</li>
+        <li>운용 기간: 5년 (투자기간 3년)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">핵심 지표</div>
+      <ul class="footer-list">
+        <li>목표 IRR: 20% 이상</li>
+        <li>시총 목표: Triple 3 (3조 원)</li>
+        <li>추가 매출: 200~500억 원</li>
+        <li>투자 기업 수: 5~10개사</li>
+        <li>1기 시작: 2026년 5월</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Gravity Ventures Inc. — Confidential</span>
+    <span>APS × Gravity Open Innovation Fund Proposal</span>
+  </div>
+</footer>
+<script>
+// IntersectionObserver — section fade-in
+const sections = document.querySelectorAll('.section');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+sections.forEach(s => io.observe(s));
+setTimeout(() => {
+  sections.forEach(s => { if (s.getBoundingClientRect().top < window.innerHeight) s.classList.add('vis'); });
+}, 80);
+// Nav active
+const navLinks = document.querySelectorAll('.nav-link');
+const navSections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  navSections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) cur = sec.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+}, { passive: true });
+</script>
+</body>
+</html>
