@@ -310,6 +310,47 @@ nav {
 }
 .fund-amount span { font-size: 28px; color: var(--muted); font-weight: 600; }
 .fund-sub { font-size: 16px; color: var(--muted); margin-top: 6px; }
+/* ── IMPACT HIGHLIGHT ──────────────── */
+.impact-highlight {
+  background: linear-gradient(135deg, rgba(0,168,118,0.13), rgba(26,95,212,0.08));
+  border: 1.5px solid var(--g-green);
+  border-radius: var(--r-lg);
+  padding: 22px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 22px rgba(0,168,118,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.impact-highlight::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(to bottom, var(--g-green), var(--a-blue));
+}
+.impact-highlight-row {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.impact-icon {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--g-green);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0,168,118,0.3);
+}
+.impact-content { flex: 1; min-width: 280px; }
+.impact-tag {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--g-green); margin-bottom: 6px;
+}
+.impact-text {
+  font-size: 15.5px; line-height: 1.65;
+  color: var(--text); font-weight: 500;
+}
+.impact-text strong.g { color: var(--g-green); font-weight: 700; }
+.impact-text strong.b { color: var(--text); font-weight: 800; }
 /* ── OPTION CARDS ──────────────────── */
 /* ── THEMES ────────────────────────── */
 .theme-card {
@@ -672,6 +713,18 @@ footer {
   <h2 class="sec-title">APS Gravity 오픈이노베이션 펀드 및 프로그램</h2>
   <p class="sec-desc">30억 원 규모 블라인드 펀드 조성과 연 2회 오픈이노베이션 프로그램을 통해 딥테크 스타트업과 전략적 협업을 구축합니다.</p>
   <div style="height:36px"></div>
+  <!-- 핵심 기대효과 (Highlight) -->
+  <div class="impact-highlight">
+    <div class="impact-highlight-row">
+      <div class="impact-icon">★</div>
+      <div class="impact-content">
+        <div class="impact-tag">핵심 기대효과</div>
+        <div class="impact-text">
+          <strong class="g">블라인드 펀드 기반 오픈이노베이션 프로그램</strong> 수행 → 다양한 반도체 기술기업 발굴·투자로 <strong class="b">AP시스템 기술브랜딩 강화 + 기업가치 제고</strong>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Fund Hero -->
   <div class="fund-hero" style="margin-bottom:20px">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;position:relative;z-index:1">
@@ -836,11 +889,7 @@ footer {
   <div class="sec-tag">06 기대 효과 및 ROI</div>
   <h2 class="sec-title">기대 효과 및 투자 회수(ROI) 전략</h2>
   <p class="sec-desc">3년 내 달성 가능한 구체적 목표와 정량적 지표를 제시합니다.</p>
-  <div style="height:24px"></div>
-  <div class="hl-box" style="border-left-width:4px">
-    <p><strong>핵심 기대효과</strong> &nbsp;·&nbsp; 블라인드 펀드 기반 오픈이노베이션 프로그램 수행 → 다양한 반도체 기술기업 발굴 · 투자로 <strong>AP시스템 기술브랜딩 강화 및 기업가치 제고</strong></p>
-  </div>
-  <div style="height:24px"></div>
+  <div style="height:36px"></div>
   <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px">
     <table class="roi-table">
       <thead>
