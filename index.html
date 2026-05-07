@@ -529,108 +529,6 @@ footer {
 }
 .flow-step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
-/* ── Q&A ACCORDION ─────────────────── */
-details.qa-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 0;
-  box-shadow: 0 1px 4px rgba(10,30,80,0.05);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  margin-bottom: 16px;
-  overflow: hidden;
-}
-details.qa-card:hover {
-  border-color: rgba(0,168,118,0.4);
-  box-shadow: 0 6px 22px rgba(0,168,118,0.12);
-  transform: translateY(-1px);
-}
-details.qa-card[open] {
-  border-color: rgba(0,168,118,0.35);
-  box-shadow: 0 4px 18px rgba(0,168,118,0.10);
-}
-details.qa-card[open]:hover {
-  transform: none;
-}
-details.qa-card > summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 22px 26px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  user-select: none;
-  transition: background 0.2s ease;
-}
-details.qa-card > summary::-webkit-details-marker { display: none; }
-details.qa-card:hover > summary { background: rgba(0,168,118,0.03); }
-details.qa-card[open] > summary { background: rgba(0,168,118,0.04); border-bottom: 1px solid rgba(0,168,118,0.15); }
-details.qa-card > summary::before {
-  content: 'Q';
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--g-green);
-  color: #fff;
-  font-family: var(--font-head);
-  font-size: 14px;
-  font-weight: 800;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0,168,118,0.25);
-}
-.qa-q {
-  flex: 1;
-  font-family: var(--font-head);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.5;
-}
-.qa-chev {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--muted);
-  transition: transform 0.25s ease, color 0.2s ease;
-}
-details.qa-card:hover .qa-chev { color: var(--g-green); }
-details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green); }
-.qa-body {
-  padding: 22px 26px 26px;
-  animation: qa-fade 0.32s ease;
-}
-@keyframes qa-fade {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.qa-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-.qa-hint::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--g-green);
-  box-shadow: 0 0 0 4px rgba(0,168,118,0.18);
-  animation: qa-pulse 2s ease-in-out infinite;
-}
-@keyframes qa-pulse {
-  0%,100% { box-shadow: 0 0 0 4px rgba(0,168,118,0.18); }
-  50% { box-shadow: 0 0 0 7px rgba(0,168,118,0.05); }
-}
-
-/* ── RESPONSIVE ────────────────────── */
 @media (max-width: 800px) {
   .g2, .g3, .g4, .g-12, .problem-row, .flow-steps { grid-template-columns: 1fr; }
   .hero { min-height: 80vh; }
@@ -658,7 +556,6 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
       <a href="#market" class="nav-link"><span class="num">05</span> OI 시장 동향</a>
       <a href="#roi" class="nav-link"><span class="num">06</span> 기대 효과 · ROI</a>
       <a href="#timeline" class="nav-link"><span class="num">07</span> 추진 일정</a>
-      <a href="#faq" class="nav-link"><span class="num">08</span> Q&amp;A · 보수 체계</a>
     </div>
   </div>
 </nav>
@@ -917,7 +814,7 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
       </div>
       <div class="metric-row">
         <span class="metric-key">달성 기간</span>
-        <span class="metric-val good">3년 이내</span>
+        <span class="metric-val good">5년 이내</span>
       </div>
 
     </div>
@@ -975,11 +872,11 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
 
   <!-- Fund Options -->
   <div class="card" style="margin-bottom:20px">
-    <div class="card-title">출자 구조 (3가지 안 · 총 30억 원)</div>
+    <div class="card-title">결성 구조 (총 30억 원)</div>
     <ul class="info-list">
-      <li><span class="info-key">1안</span><span class="info-val">AP시스템 전용펀드 — 100% 단독 출자 (30억)</span></li>
-      <li><span class="info-key">2안 <span class="badge badge-g" style="font-size:9px;padding:1px 6px">권장</span></span><span class="info-val accent">AP시스템 90% (27억) + 그래비티벤처스 10% (3억, 존속기간 관리보수 선취)</span></li>
-      <li><span class="info-key">3안</span><span class="info-val">AP시스템 60% (18억) + 기관 LP 30% (9억) + 그래비티벤처스 10% (3억)</span></li>
+      <li><span class="info-key">AP시스템 (Anchor LP)</span><span class="info-val accent">90% · 27억 원</span></li>
+      <li><span class="info-key">그래비티벤처스 (GP) + 그래비티 초청 LP</span><span class="info-val accent">10% · 3억 원</span></li>
+      <li><span class="info-key">총 결성 규모</span><span class="info-val">30억 원 (블라인드 펀드)</span></li>
     </ul>
   </div>
 
@@ -1166,7 +1063,7 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
 <section id="roi" class="section">
   <div class="sec-tag">06 기대 효과 및 ROI</div>
   <h2 class="sec-title">기대 효과 및 투자 회수(ROI) 전략</h2>
-  <p class="sec-desc">3년 내 달성 가능한 구체적 목표와 정량적 지표를 제시합니다.</p>
+  <p class="sec-desc">5년 내 달성 가능한 구체적 목표와 정량적 지표를 제시합니다.</p>
 
   <div style="height:36px"></div>
 
@@ -1176,7 +1073,7 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
         <tr>
           <th>구분</th>
           <th>구체적 효과</th>
-          <th>정량적 목표 (3년 내)</th>
+          <th>정량적 목표 (5년 내)</th>
         </tr>
       </thead>
       <tbody>
@@ -1230,7 +1127,7 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
 <section id="timeline" class="section">
   <div class="sec-tag">07 파트너 역량 및 추진 일정</div>
   <h2 class="sec-title">추진 일정 (안)</h2>
-  <p class="sec-desc">MOU 체결부터 2기 투자 집행까지 12개월 액션 플랜입니다.</p>
+  <p class="sec-desc">MOU 체결부터 2기 투자 집행까지 10개월 액션 플랜입니다.</p>
 
   <div style="height:36px"></div>
 
@@ -1264,7 +1161,7 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
         <div class="tl-desc">1기 진행 중 2기 공모를 병행 런칭하여 파이프라인을 지속 확보합니다.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-month">12개월 차</div>
+        <div class="tl-month">10개월 차</div>
         <div class="tl-title">1기 성과 발표 + 2기 투자 집행</div>
         <div class="tl-desc">1기 PoC 성과를 발표하고, 2기 투자 집행으로 이어갑니다.</div>
       </div>
@@ -1281,166 +1178,6 @@ details.qa-card[open] .qa-chev { transform: rotate(180deg); color: var(--g-green
   </div>
 </section>
 
-
-<div class="divider"></div>
-
-<!-- ── APPENDIX: 출자 구조 Q&A ─────── -->
-<section id="faq" class="section">
-  <div class="sec-tag">Appendix · 보충 자료</div>
-  <h2 class="sec-title">출자 구조 및 보수 체계 Q&amp;A</h2>
-  <p class="sec-desc">AP시스템에서 전달주신 출자 구조·보수 체계 관련 질의 3건에 대한 답변입니다 (펀드 결성 규모 30억 원 기준). 한국벤처투자(모태펀드) 표준조항 및 벤처투자조합 시장 관행을 기준으로 정리하였습니다.</p>
-
-  <div style="height:36px"></div>
-
-  <div class="qa-hint">CLICK · 질문을 클릭하면 답변이 펼쳐집니다</div>
-
-  <!-- Q1 -->
-  <details class="qa-card">
-    <summary>
-      <span class="qa-q">Q1. 30억 원 펀드 기준, 시장 통상 운용보수 및 성공보수 수준은?</span>
-      <svg class="qa-chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </summary>
-    <div class="qa-body">
-    <div class="g2" style="gap:20px">
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">A. 운용보수 (Management Fee)</div>
-        <ul class="info-list">
-          <li><span class="info-key">시장 통상</span><span class="info-val">출자약정총액의 연 1.5~2.5%</span></li>
-          <li><span class="info-key">소형 펀드 (≤100억)</span><span class="info-val accent">연 2.0~2.5%</span></li>
-          <li><span class="info-key">모태펀드 표준</span><span class="info-val">연 2.0~2.5% 권고</span></li>
-          <li><span class="info-key">본 제안 권장</span><span class="info-val accent">연 2.0% (5년 총 3억 원)</span></li>
-        </ul>
-        <div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.7">소형 펀드는 운용 인력·실사 비용 부담이 상대적으로 높아 상한 구간 적용이 일반적입니다. 30억 규모는 실무상 연 2.5%까지도 통용되나 LP 부담을 고려해 2.0% 권장.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">B. 성공보수 (Carried Interest)</div>
-        <ul class="info-list">
-          <li><span class="info-key">허들레이트</span><span class="info-val">IRR 6~8% (통상 7%)</span></li>
-          <li><span class="info-key">초과수익 분배</span><span class="info-val">GP 20% / LP 80%</span></li>
-          <li><span class="info-key">Catch-up 조항</span><span class="info-val">선택적 (GP 100% 구간 후 80:20 회복)</span></li>
-          <li><span class="info-key">본 제안 권장</span><span class="info-val accent">허들 7% · GP Carry 20%</span></li>
-        </ul>
-        <div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.7">한국벤처캐피탈협회 표준약관 및 모태펀드 출자조합 표준조항 기준으로 가장 보편적인 구조입니다.</div>
-      </div>
-    </div>
-    </div>
-  </details>
-
-  <!-- Q2 -->
-  <details class="qa-card">
-    <summary>
-      <span class="qa-q">Q2. 1안 (AP시스템 100% 단독 출자) 시 운용보수 지급 방식 및 시기는?</span>
-      <svg class="qa-chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </summary>
-    <div class="qa-body">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">A. 일반적 지급 구조</div>
-    <ul class="info-list">
-      <li><span class="info-key">지급 주기</span><span class="info-val">매분기 또는 매반기 1회 (후납이 일반적)</span></li>
-      <li><span class="info-key">청구 방식</span><span class="info-val">분기 종료 후 운용보고서와 함께 GP가 LP에 청구</span></li>
-      <li><span class="info-key">투자기간(3년)</span><span class="info-val">출자약정총액 기준 연 2.0% (적극적 운용)</span></li>
-      <li><span class="info-key">회수기간(2년)</span><span class="info-val">잔여 투자원본 기준 연 1.0~1.5% (점감)</span></li>
-      <li><span class="info-key">대안</span><span class="info-val">5년 전체 단순 정액 연 2.0%</span></li>
-    </ul>
-
-    <div class="hl-box" style="margin-top:18px">
-      <p><strong>본 제안 1안 권장 설계</strong>: 매분기 후납 · 약정총액 기준 연 2.0% 정액 5년간 지급 (5년 총 3억 원). 회계·자금흐름 단순화를 위해 점감 구조 대신 정액 구조를 권장하며, AP시스템 내부 예산 편성 시 분기당 약 1,500만 원 수준으로 일정한 운용보수 흐름이 발생합니다.</p>
-    </div>
-    </div>
-  </details>
-
-  <!-- Q3 -->
-  <details class="qa-card">
-    <summary>
-      <span class="qa-q">Q3. 2안 선취 구조 — GP 출자분 10%(3억 원)가 연 2.0% × 5년 산정인지? 시장 관행에 부합하는지?</span>
-      <svg class="qa-chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </summary>
-    <div class="qa-body">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">A. 산정 근거</div>
-    <div style="background:rgba(0,168,118,0.06);border:1px solid rgba(0,168,118,0.2);border-radius:var(--r-md);padding:18px 22px;margin-bottom:18px">
-      <div style="font-family:var(--font-mono);font-size:14px;font-weight:600;color:var(--text);text-align:center;letter-spacing:0.02em">
-        30억 원 (약정총액) &nbsp;×&nbsp; 연 2.0% &nbsp;×&nbsp; 5년 (존속기간) &nbsp;=&nbsp; <span style="color:var(--g-green);font-weight:800">3억 원</span>
-      </div>
-      <div style="font-size:13px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.7">
-        즉, 5년간 받을 운용보수 총액을 펀드 결성 시 그래비티벤처스(GP)가 자기 출자금으로 선납·전환하는 구조 (= LP의 운용보수 부담 0).
-      </div>
-    </div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px">B. 시장 관행 부합성 평가</div>
-    <div class="g2">
-      <div>
-        <div style="font-size:13px;font-weight:700;color:var(--g-green);margin-bottom:8px">✓ 강점 (Pros)</div>
-        <ul style="list-style:none;padding-left:0;font-size:13px;color:var(--text);line-height:1.75">
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--g-green);flex-shrink:0">→</span>LP 운용보수 부담 전액 면제</li>
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--g-green);flex-shrink:0">→</span>GP 책임출자(Skin-in-the-Game) 3억 원으로 이해관계 일치 강화</li>
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--g-green);flex-shrink:0">→</span>GP 인센티브가 성공보수(Carry) 중심으로 집중</li>
-        </ul>
-      </div>
-      <div>
-        <div style="font-size:13px;font-weight:700;color:var(--warn);margin-bottom:8px">⚠ 고려사항 (Cons)</div>
-        <ul style="list-style:none;padding-left:0;font-size:13px;color:var(--text);line-height:1.75">
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--warn);flex-shrink:0">→</span>GP 5년간 무보수 운용 → 운용 인력·관리비 회수 시점이 Exit 이후로 연기</li>
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--warn);flex-shrink:0">→</span>통상 GP 출자분에 대한 우선분배(선순위 회수) 또는 Catch-up 조항을 함께 약정</li>
-          <li style="padding:4px 0;display:flex;gap:8px"><span style="color:var(--warn);flex-shrink:0">→</span>모태펀드 표준안에는 명시되지 않은 변형 구조</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="hl-box" style="margin-top:18px;border-color:var(--a-blue);background:rgba(26,95,212,0.05)">
-      <p style="color:var(--text)"><strong style="color:var(--a-blue)">결론</strong>: 본 2안은 모태펀드 표준안의 일반 구조는 아니지만, <strong>단독 LP(전용펀드)</strong>에서 LP 친화적 변형으로 다수 사례가 존재합니다(대기업 CVC 전용펀드 등). LP 운용보수 부담 면제와 GP 책임출자를 동시에 달성하는 합리적 설계로, 단독 LP 구조에서는 시장에서 수용 가능한 관행으로 평가됩니다. <strong>기관 LP가 합류하는 3안 채택 시에는 표준 구조(LP 매년 운용보수 지급 + GP 1~2% 출자)로 전환</strong>하는 것이 일반적입니다.</p>
-    </div>
-    </div>
-  </details>
-
-  <!-- 3개 안 비교표 -->
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:20px">
-    <table class="roi-table">
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>1안 (단독 출자)</th>
-          <th>2안 (선취 구조) <span style="color:var(--g-green);font-size:9px;font-weight:700">권장</span></th>
-          <th>3안 (LP 다각화)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>출자 비중 (총 30억)</td>
-          <td>AP시스템 100% (30억)</td>
-          <td>AP시스템 90% (27억) + GP 10% (3억)</td>
-          <td>AP시스템 60% (18억) + 기관 LP 30% (9억) + GP 10% (3억)</td>
-        </tr>
-        <tr>
-          <td>LP 운용보수</td>
-          <td>매분기 후납 연 2.0%</td>
-          <td class="val">면제 (GP 출자분으로 선취)</td>
-          <td>매분기 후납 연 2.0% (LP별 비례)</td>
-        </tr>
-        <tr>
-          <td>GP 출자</td>
-          <td>0원</td>
-          <td class="val">3억 원 (Skin-in-the-Game)</td>
-          <td>3억 원 (Skin-in-the-Game)</td>
-        </tr>
-        <tr>
-          <td>5년 AP시스템 부담</td>
-          <td>30억 출자 + 3억 보수 = 33억</td>
-          <td class="val">27억 출자 (보수 부담 0)</td>
-          <td>18억 출자 + 약 1.8억 보수 = 약 19.8억</td>
-        </tr>
-        <tr>
-          <td>성공보수</td>
-          <td>허들 7% 초과분 GP 20%</td>
-          <td>허들 7% 초과분 GP 20%</td>
-          <td>허들 7% 초과분 GP 20%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="font-size:11px;color:var(--muted);margin-top:14px;line-height:1.7">
-    ※ 본 답변은 한국벤처투자(KVIC) 모태펀드 출자조합 표준조항, 한국벤처캐피탈협회(KVCA) 표준약관, 2024~2025년 국내 CVC·전용펀드 결성 사례를 종합하여 정리한 것입니다. 최종 보수율·지급 시기·Carry 구조는 펀드 결성 단계에서 LP-GP 협의 및 법무·세무 검토를 거쳐 확정됩니다.
-  </div>
-</section>
 
 
 <!-- FOOTER -->
